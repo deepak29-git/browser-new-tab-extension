@@ -1,0 +1,63 @@
+body {
+  background-image: url("../../assets/nature-3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  color: var(--white-color);
+  letter-spacing: 2px;
+  font-size: 3.5rem;
+}
+.center-align {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.name-input {
+  outline: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  height: 4rem;
+  padding: 1.5rem 2rem;
+  border-bottom: 3px solid var(--white-color);
+  background: transparent;
+  margin-top: 2rem;
+  color: var(--white-color);
+  font-size: 3rem;
+}
+
+.continue-btn {
+  background-color: var(--white-color);
+  border-radius: 30px;
+  margin-top: 2rem;
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+
+.text-icon {
+  color: var(--black-color);
+  gap: 0;
+  border: 2px solid var(--white-color);
+}
+
+.text-icon:hover {
+  background-color: transparent;
+}
+
+.icon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.greeting-text {
+  color: var(--white-color);
+}
+
+.main-focus-title {
+  color: var(--white-color);
+}
