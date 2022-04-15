@@ -1,5 +1,5 @@
 body {
-  background-image: url("../../assets/nature-3.jpg");
+  background-image: url("https://source.unsplash.com/random/?nature/1366×768");
   background-size: cover;
   background-position: center;
 }
@@ -24,6 +24,7 @@ body {
   border-right: none;
   height: 4rem;
   padding: 1.5rem 2rem;
+  text-align: center;
   border-bottom: 3px solid var(--white-color);
   background: transparent;
   margin-top: 2rem;

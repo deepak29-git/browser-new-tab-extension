@@ -1,8 +1,7 @@
+import { useState } from "react";
 import "../OnboardingPage/OnboardingPage.css";
 import nextIcon from "../../assets/next.png";
-import { useEffect, useState } from "react";
-import { greetings } from "../../Utils/greetings";
-import { getMinuteBelowTen } from "../../Utils/getMinuteBelowTen";
+import { getMinuteBelowTen, greetings } from "../index";
 
 export const OnboardingPage = () => {
   const [nameInput, setNameInput] = useState("");
@@ -12,18 +11,12 @@ export const OnboardingPage = () => {
   const [hideMainFocusOutput, setHideMainFocusOutput] = useState(false);
   const [hideInput, setHideInput] = useState(true);
   const [hideMainFocusTitle, setHideMainFocusTitle] = useState(false);
- 
-
 
   const continueHandler = () => {
     setShow(true);
     setHideMainFocusTitle(true);
     setMainFocusInput("");
   };
-
-  useEffect(() => {
-  
-  }, []);
 
   const addMainFocusHandler = (e) => {
     if (e.key === "Enter") {
@@ -36,7 +29,6 @@ export const OnboardingPage = () => {
 
   return (
     <div className="center-align">
-    
       {!show ? (
         <h1 className="title">Hello,what's your name?</h1>
       ) : (
