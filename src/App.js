@@ -4,7 +4,7 @@ import { OnboardingPage } from './Pages/OnboardingPage/OnbordingPage';
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <OnboardingPage/>
     </div>
   );

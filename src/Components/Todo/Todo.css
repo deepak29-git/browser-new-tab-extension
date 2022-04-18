@@ -1,0 +1,26 @@
+.align-end {
+  display: flex;
+  justify-content: end;
+
+}
+.todo-title {
+  color: var(--white-color);
+  margin-right: 1rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.todo-title::before {
+  content:attr(data-hover);
+  visibility: hidden;
+  position: absolute;
+  bottom: 30px;
+  right: 50px;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  padding: 0 0.3rem;
+  font-size: 14px;
+}
+.todo-title:hover::before {
+  visibility: visible;
+}
