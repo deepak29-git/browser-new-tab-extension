@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../OnboardingPage/OnboardingPage.css";
 import nextIcon from "../../assets/next.png";
 import { getMinuteBelowTen, greetings } from "../index";
+import { Todo } from "../../Components/Todo/Todo";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
@@ -57,7 +58,6 @@ export const OnboardingPage = () => {
               <p className="h3 main-focus-title center-text mt-1">
                 What is your main focus for today?
               </p>
-
               <input
                 onChange={(e) => setMainFocusInput(e.target.value)}
                 className="name-input"
@@ -69,6 +69,7 @@ export const OnboardingPage = () => {
           )}
         </div>
       )}
+      {!continueBtn && <Todo /> }
     </>
   );
 };
