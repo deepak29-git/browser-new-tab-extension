@@ -12,6 +12,8 @@ export const TodoModal = () => {
     );
     setTodo(newTodo);
   };
+
+
   return (
     <>
       <div className="todomodal-box">
@@ -54,19 +56,24 @@ export const TodoModal = () => {
             {todoInput && (
               <input
                 onKeyDown={(e) => {
-                  const addObj = {
-                    id: uuid(),
-                    name: input,
-                    isDone: false,
-                  };
-                  e.key === "Enter" && setTodo([...todo, addObj]);
-                  // setInput("");
+                  if (e.key === "Enter") {
+                    setTodo([
+                      ...todo,
+                      {
+                        id: uuid(),
+                        name: input,
+                        isDone: false,
+                      },
+                    ]);
+                    setInput("");
+                  }
                 }}
+               
                 onChange={(e) => setInput(e.target.value)}
                 className="todo-input"
                 placeholder="New Todo"
                 type="text"
-                // value={input}
+                value={input}
               />
             )}
           </div>

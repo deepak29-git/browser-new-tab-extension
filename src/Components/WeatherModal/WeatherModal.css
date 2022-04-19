@@ -1,0 +1,22 @@
+.weather-modal {
+  height: 13rem;
+
+  width: 20rem;
+  position: absolute;
+  border-radius: 7px;
+  top: 15%;
+  right: 10px;
+  background-color: var(--white-color);
+}
+
+.weather-content{
+    padding: 0rem 0 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.weather-details{
+    padding: 0.4rem 0 0 1rem;
+    line-height: 1.4rem;
+}
