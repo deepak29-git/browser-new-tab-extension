@@ -1,5 +1,6 @@
 .app {
-  background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url("https://source.unsplash.com/random/?nature/1366×768");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://source.unsplash.com/random/?nature/1366×768");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -62,4 +63,11 @@
 
 .main-focus-title {
   color: var(--white-color);
+}
+
+.quotes {
+  color: var(--white-color);
+  position: fixed;
+  bottom: 20px;
+  left: 40%;
 }

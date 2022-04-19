@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../OnboardingPage/OnboardingPage.css";
 import nextIcon from "../../assets/next.png";
 import { getMinuteBelowTen, greetings } from "../index";
 import { Todo } from "../../Components/Todo/Todo";
 import { Weather } from "../../Components/Weather/Weather";
+import { getQuoteApi } from "../../api-services/quotes-api";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
@@ -11,7 +12,7 @@ export const OnboardingPage = () => {
   const [mainFocusInput, setMainFocusInput] = useState("");
   const [printMainFocus, setPrintMainFocus] = useState("");
   const [hideMainFocusInput, setHideMainFocusInput] = useState(true);
-
+  const [quotes, setQuotes] = useState([]);
   const continueHandler = (e) => {
     if (e.key === "Enter") {
       setContinueBtn(false);
@@ -27,6 +28,10 @@ export const OnboardingPage = () => {
       setHideMainFocusInput(false);
     }
   };
+
+  useEffect(() => {
+    getQuoteApi(setQuotes);
+  }, []);
 
   return (
     <>
@@ -68,10 +73,15 @@ export const OnboardingPage = () => {
               />
             </div>
           )}
+          
+            <div className="quotes-container">
+              <p className="quotes">{quotes.content}</p>
+            </div>
+       
         </div>
       )}
-      {!continueBtn && <Todo /> }
-      {!continueBtn && <Weather /> }
+      {!continueBtn && <Todo />}
+      {!continueBtn && <Weather />}
     </>
   );
 };
