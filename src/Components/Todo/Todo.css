@@ -1,8 +1,8 @@
 .align-end {
   display: flex;
   justify-content: end;
-
 }
+
 .todo-title {
   color: var(--white-color);
   margin-right: 1rem;

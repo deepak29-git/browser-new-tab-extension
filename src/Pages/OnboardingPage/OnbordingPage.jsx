@@ -3,6 +3,7 @@ import "../OnboardingPage/OnboardingPage.css";
 import nextIcon from "../../assets/next.png";
 import { getMinuteBelowTen, greetings } from "../index";
 import { Todo } from "../../Components/Todo/Todo";
+import { Weather } from "../../Components/Weather/Weather";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
@@ -70,6 +71,7 @@ export const OnboardingPage = () => {
         </div>
       )}
       {!continueBtn && <Todo /> }
+      {!continueBtn && <Weather /> }
     </>
   );
 };
