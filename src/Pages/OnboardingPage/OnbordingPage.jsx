@@ -5,6 +5,7 @@ import { getMinuteBelowTen, greetings } from "../index";
 import { Todo } from "../../Components/Todo/Todo";
 import { Weather } from "../../Components/Weather/Weather";
 import { getQuoteApi } from "../../api-services/quotes-api";
+import { AddEvent } from "../../Components/AddEvent/AddEvent";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
@@ -82,6 +83,7 @@ export const OnboardingPage = () => {
       )}
       {!continueBtn && <Todo />}
       {!continueBtn && <Weather />}
+      {!continueBtn&& <AddEvent/>}
     </>
   );
 };

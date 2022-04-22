@@ -1,0 +1,30 @@
+.event-title {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  color: var(--white-color);
+}
+
+.add-event-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.event-container {
+  cursor: pointer;
+}
+
+.event-title::after {
+  content: attr(data-hover);
+  visibility: hidden;
+  color: var(--white-color);
+  font-size: 13px;
+  background-color: var(--black-color);
+  padding: 0.5rem;
+  position: relative;
+  left: 15px;
+}
+
+.event-title:hover::after {
+  visibility: visible;
+}
