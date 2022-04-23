@@ -1,8 +1,8 @@
-import { useTodo } from "../../Context/Todo-context";
+import { useState } from "react";
 import { TodoModal } from "../TodoModal/TodoModal";
 import "../Todo/Todo.css";
 export const Todo = () => {
-  const { todoModal, setTodoModal } = useTodo();
+  const [todoModal, setTodoModal] = useState(false);
   const todoHandler = () => {
     if (todoModal) {
       setTodoModal(false);

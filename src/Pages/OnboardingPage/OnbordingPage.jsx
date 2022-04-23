@@ -9,26 +9,44 @@ import { AddEvent } from "../../Components/AddEvent/AddEvent";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
-  const [continueBtn, setContinueBtn] = useState(true);
   const [mainFocusInput, setMainFocusInput] = useState("");
-  const [printMainFocus, setPrintMainFocus] = useState("");
-  const [hideMainFocusInput, setHideMainFocusInput] = useState(true);
+  const [printMainFocus, setPrintMainFocus] = useState(
+    localStorage.getItem("mainFocus") ? localStorage.getItem("mainFocus") : ""
+  );
   const [quotes, setQuotes] = useState([]);
+  const [printUserName, setPrintUserName] = useState(
+    localStorage.getItem("userName") ? localStorage.getItem("userName") : ""
+  );
+
   const continueHandler = (e) => {
     if (e.key === "Enter") {
-      setContinueBtn(false);
+      setPrintUserName(userName);
     }
     if (e.target.innerText === "Continue") {
-      setContinueBtn(false);
+      setPrintUserName(userName);
     }
   };
 
   const addMainFocusHandler = (e) => {
     if (e.key === "Enter") {
       setPrintMainFocus(mainFocusInput);
-      setHideMainFocusInput(false);
     }
   };
+
+  const editClickHandler = () => {
+    setPrintMainFocus(mainFocusInput)
+  };
+  const deleteHandler = () => {
+   setPrintMainFocus("")
+  };
+
+  useEffect(() => {
+    localStorage.setItem("userName", printUserName);
+  }, [printUserName]);
+
+  useEffect(() => {
+    localStorage.setItem("mainFocus", printMainFocus);
+  }, [printMainFocus]);
 
   useEffect(() => {
     getQuoteApi(setQuotes);
@@ -36,7 +54,7 @@ export const OnboardingPage = () => {
 
   return (
     <>
-      {continueBtn ? (
+      {!printUserName ? (
         <div className="center-align">
           <h1 className="title">Hello,what's your name?</h1>
           <input
@@ -57,10 +75,10 @@ export const OnboardingPage = () => {
         <div className="center-align">
           <h1 className="title">{`${new Date().getHours()}:${getMinuteBelowTen()}`}</h1>
           <p className="h1 greeting-text">
-            {greetings()}, {userName}.
+            {greetings()}, {printUserName}.
           </p>
           <p className="h2 main-focus-title mt-1">{printMainFocus}</p>
-          {hideMainFocusInput && (
+          {!printMainFocus && (
             <div>
               <p className="h3 main-focus-title center-text mt-1">
                 What is your main focus for today?
@@ -74,16 +92,29 @@ export const OnboardingPage = () => {
               />
             </div>
           )}
-          
-            <div className="quotes-container">
-              <p className="quotes">{quotes.content}</p>
-            </div>
-       
+          <div className="edit-delete-container">
+            <span
+              onClick={() => editClickHandler()}
+              className="edit-icon material-icons-outlined"
+            >
+              edit
+            </span>
+            <span
+              onClick={() => deleteHandler()}
+              className="delete-icon material-icons-outlined"
+            >
+              delete
+            </span>
+          </div>
+          <div className="quotes-container">
+            <p className="quotes">{quotes.content}</p>
+          </div>
         </div>
       )}
-      {!continueBtn && <Todo />}
-      {!continueBtn && <Weather />}
-      {!continueBtn&& <AddEvent/>}
+      {printUserName && <Todo />}
+      {printUserName && <Weather />}
+      {printUserName && <AddEvent />}
+      {/* {printUserName && <Setting />} */}
     </>
   );
 };

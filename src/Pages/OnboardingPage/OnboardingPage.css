@@ -71,3 +71,7 @@
   bottom: 20px;
   left: 40%;
 }
+
+.edit-delete-container{
+  color: var(--white-color);
+}

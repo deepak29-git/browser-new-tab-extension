@@ -57,6 +57,11 @@ export const EventModal = () => {
     }
   };
 
+  const deleteEventHandler = (id) => {
+    const deleteEvent = printEvent.filter((event) => event.id !== id);
+    setPrintEvent(deleteEvent);
+  };
+
   setInterval(() => {
     setCountDown(new Date());
   }, 1000);
@@ -88,11 +93,19 @@ export const EventModal = () => {
             {printEvent.map(({ id, eventName, eventDate, eventTime }) => {
               let countDown = getCountDown(eventDate, eventTime);
               return (
-                <div key={id}>
-                  <p>{eventName}</p>
-                  <small>{countDown}</small>
-                  <p>{eventDate}</p>
-                  <p>{eventTime}</p>
+                <div key={id} className="show-countdown">
+                  <div className="event-details">
+                    <p>{eventName}</p>
+                    <p>{countDown}</p>
+                    <p>{eventDate}</p>
+                    <p>{eventTime}</p>
+                  </div>
+                  <span
+                    onClick={() => deleteEventHandler(id)}
+                    className="material-icons-outlined"
+                  >
+                    delete
+                  </span>
                 </div>
               );
             })}
