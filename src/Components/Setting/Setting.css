@@ -1,0 +1,57 @@
+.setting-title {
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  color: var(--white-color);
+}
+
+.add-setting-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.setting-container {
+  cursor: pointer;
+}
+
+.setting-title::after {
+  content: attr(data-hover);
+  visibility: hidden;
+  color: var(--white-color);
+  font-size: 13px;
+  background-color: var(--black-color);
+  padding: 0.5rem;
+  position: relative;
+  bottom: 90px;
+  left: 15px;
+}
+
+.setting-title:hover::after {
+  visibility: visible;
+}
+
+.setting-modal {
+  height: 8rem;
+  width: 16rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  border-radius: 5px;
+  position: absolute;
+  bottom: 12%;
+  left: 10px;
+  color: var(--white-color);
+}
+
+.yes-btn {
+  background-color: var(--primary-color);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.no-btn {
+  background-color: none;
+  border: 1px solid var(--primary-color);
+  color: var(--white-color);
+}
+
+.setting-text{
+    padding: 1rem;
+}

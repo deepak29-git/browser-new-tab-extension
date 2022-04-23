@@ -6,6 +6,7 @@ import { Todo } from "../../Components/Todo/Todo";
 import { Weather } from "../../Components/Weather/Weather";
 import { getQuoteApi } from "../../api-services/quotes-api";
 import { AddEvent } from "../../Components/AddEvent/AddEvent";
+import { Setting } from "../../Components/Setting/Setting";
 
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
@@ -114,7 +115,7 @@ export const OnboardingPage = () => {
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}
-      {/* {printUserName && <Setting />} */}
+      {printUserName && <Setting />}
     </>
   );
 };

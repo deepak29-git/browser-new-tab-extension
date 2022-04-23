@@ -50,7 +50,7 @@ export const Weather = () => {
         <span
           onClick={() => weatherHandler()}
           data-hover="Weather"
-          className="todo-title h3"
+          className="weather-title h3"
         >
           {weather && (
             <div className="weather-container">
