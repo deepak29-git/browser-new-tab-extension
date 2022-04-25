@@ -11,11 +11,13 @@ export const Todo = () => {
     }
   };
   return (
-    <div className="align-end">
+    <>
       {todoModal && <TodoModal />}
+    <div className="align-end">
       <span onClick={() => todoHandler()} data-hover="Todo" className="todo-title h3">
         Todo
       </span>
     </div>
+    </>
   );
 };

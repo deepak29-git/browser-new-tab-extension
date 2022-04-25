@@ -78,3 +78,14 @@
   margin-bottom: 0.5rem;
 }
 
+.delete-all-btn{
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  margin-right: 0.5rem;
+}
+
+.delete-btn-container{
+  display: flex;
+  justify-content: flex-end;
+  
+}

@@ -16,6 +16,7 @@ export const EventModal = () => {
       : []
   );
   const [countDown, setCountDown] = useState();
+  const [showDelete,setShowDelete]=useState(false)
   const addEventHandler = () => {
     setCreateEvent(true);
   };
@@ -62,6 +63,7 @@ export const EventModal = () => {
     setPrintEvent(deleteEvent);
   };
 
+
   setInterval(() => {
     setCountDown(new Date());
   }, 1000);
@@ -86,9 +88,17 @@ export const EventModal = () => {
               >
                 add
               </span>
-              <span className="material-icons-outlined">more_horiz</span>
+              <span onClick={()=>setShowDelete(true)} className="material-icons-outlined">more_horiz</span>
             </div>
           </div>
+          {showDelete?
+          <div className="delete-btn-container">
+          <button onClick={()=>{
+            setPrintEvent([])
+            setShowDelete(false)
+            }} className="delete-all-btn btn">Delete All</button>
+          </div>
+          :""}
           <div className="print-countdown-container">
             {printEvent.map(({ id, eventName, eventDate, eventTime }) => {
               let countDown = getCountDown(eventDate, eventTime);

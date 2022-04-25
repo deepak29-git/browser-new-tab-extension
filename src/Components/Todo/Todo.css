@@ -1,12 +1,13 @@
-.align-end {
-  display: flex;
-  justify-content: flex-end;
-}
+
 
 .todo-title {
   color: var(--white-color);
   margin-right: 1rem;
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  color: var(--white-color);
   cursor: pointer;
 }
 

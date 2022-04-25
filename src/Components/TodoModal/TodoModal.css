@@ -6,6 +6,7 @@
   position: absolute;
   bottom: 12%;
   right: 5%;
+  padding-bottom: 2rem;
 }
 .add-todo-container {
   display: flex;
@@ -23,7 +24,7 @@
 
 .todo-input-container {
   position: fixed;
-  bottom: 50px;
+  bottom: 80px;
   width: 14rem;
 }
 .todo-input {

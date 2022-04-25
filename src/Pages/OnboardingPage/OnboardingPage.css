@@ -67,11 +67,9 @@
 
 .quotes {
   color: var(--white-color);
-  position: fixed;
-  bottom: 20px;
-  left: 40%;
+  text-align: center;
 }
 
-.edit-delete-container{
+.edit-delete-container {
   color: var(--white-color);
 }

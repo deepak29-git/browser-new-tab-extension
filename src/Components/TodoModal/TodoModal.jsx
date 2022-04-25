@@ -14,8 +14,13 @@ export const TodoModal = () => {
     setTodo(newTodo);
   };
 
+ 
+
   const addTodoHandler = (e) => {
     if (e.key === "Enter") {
+      if(!input){
+        return
+      }
       setTodo([
         ...todo,
         {

@@ -35,11 +35,9 @@ export const OnboardingPage = () => {
   };
 
   const editClickHandler = () => {
-    setPrintMainFocus(mainFocusInput)
+    setPrintMainFocus("")
   };
-  const deleteHandler = () => {
-   setPrintMainFocus("")
-  };
+ 
 
   useEffect(() => {
     localStorage.setItem("userName", printUserName);
@@ -74,7 +72,7 @@ export const OnboardingPage = () => {
         </div>
       ) : (
         <div className="center-align">
-          <h1 className="title">{`${new Date().getHours()}:${getMinuteBelowTen()}`}</h1>
+          <h1 className="title">{new Date().getHours()<10?"0"+new Date().getHours():new Date().getHours()}:{getMinuteBelowTen()}</h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.
           </p>
@@ -100,18 +98,14 @@ export const OnboardingPage = () => {
             >
               edit
             </span>
-            <span
-              onClick={() => deleteHandler()}
-              className="delete-icon material-icons-outlined"
-            >
-              delete
-            </span>
+           
           </div>
+        </div>
+
+      )}
           <div className="quotes-container">
             <p className="quotes">{quotes.content}</p>
           </div>
-        </div>
-      )}
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}

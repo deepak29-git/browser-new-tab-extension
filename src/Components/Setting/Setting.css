@@ -1,6 +1,6 @@
 .setting-title {
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   left: 30px;
   color: var(--white-color);
 }
@@ -36,7 +36,7 @@
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
   border-radius: 5px;
   position: absolute;
-  bottom: 12%;
+  bottom: 15%;
   left: 10px;
   color: var(--white-color);
 }
