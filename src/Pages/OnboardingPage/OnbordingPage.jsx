@@ -12,7 +12,6 @@ export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
   const [mainFocusInput, setMainFocusInput] = useState("");
   const [doneMainFocus,setDoneMainFocus]=useState(false)
-  const [editClick,setEditClick]=useState(false)
   const [printMainFocus, setPrintMainFocus] = useState(
     localStorage.getItem("mainFocus") ? localStorage.getItem("mainFocus") : ""
   );
@@ -46,7 +45,6 @@ export const OnboardingPage = () => {
 
   const editClickHandler = () => {
     setPrintMainFocus("");
-    setEditClick(true)
 
   };
 
