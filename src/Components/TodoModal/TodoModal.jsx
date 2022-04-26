@@ -4,7 +4,11 @@ import "./TodoModal.css";
 export const TodoModal = () => {
   const [todoInput, setTodoInput] = useState(false);
   const [input, setInput] = useState("");
-  const [todo, setTodo] = useState(localStorage.getItem("todos")?JSON.parse(localStorage.getItem("todos")):[]);
+  const [todo, setTodo] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : []
+  );
   const [selectEdit, setselectEdit] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
   const strikeThroughHandler = (id) => {
@@ -14,12 +18,10 @@ export const TodoModal = () => {
     setTodo(newTodo);
   };
 
- 
-
   const addTodoHandler = (e) => {
     if (e.key === "Enter") {
-      if(!input){
-        return
+      if (!input) {
+        return;
       }
       setTodo([
         ...todo,
@@ -33,9 +35,9 @@ export const TodoModal = () => {
     }
   };
 
-  useEffect(()=>{
-    localStorage.setItem("todos",JSON.stringify(todo))
-  },[todo])
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todo));
+  }, [todo]);
 
   const deleteTodoHandler = (id) => {
     setTodo(todo.filter((item) => item.id !== id));
@@ -72,33 +74,16 @@ export const TodoModal = () => {
                     id="done-todo"
                     type="checkbox"
                   />
-                  {!selectEdit ? (
-                    <label
-                      htmlFor="done-todo"
-                      onClick={() => strikeThroughHandler(todo.id)}
-                      className={`white-color ${
-                        todo.isDone ? `done-todo` : undefined
-                      }`}
-                    >
-                      {todo.name}
-                    </label>
-                  ) : (
-                    <div>
-                      <input
-                        className="edit-input"
-                        type="text"
-                        value={currentTodo.name}
-                        onChange={(e) => editChangeHandler(e)}
-                        placeholder="Edit todo"
-                      />
-                      <button
-                        className="btn update-btn"
-                        onClick={updateHandler}
-                      >
-                        update
-                      </button>
-                    </div>
-                  )}
+
+                  <label
+                    htmlFor="done-todo"
+                    onClick={() => strikeThroughHandler(todo.id)}
+                    className={`white-color ${
+                      todo.isDone ? `done-todo` : undefined
+                    }`}
+                  >
+                    {todo.name}
+                  </label>
 
                   <span
                     onClick={() => editClickHandler(todo)}
@@ -115,6 +100,22 @@ export const TodoModal = () => {
                 </div>
               ))
             )}
+
+            {selectEdit&&<div>
+              <input
+                className="edit-input"
+                type="text"
+                value={currentTodo.name}
+                onChange={(e) => editChangeHandler(e)}
+                placeholder="Edit todo"
+              />
+              <button className="btn update-btn" onClick={updateHandler}>
+                Update
+              </button>
+              <button className="btn cancel-btn" onClick={()=>setselectEdit(false)}>
+                Cancel
+              </button>
+            </div>}
 
             {!todoInput && (
               <button

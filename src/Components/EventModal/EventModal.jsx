@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useEvent } from "../../Context/event-context";
 import { v4 as uuid } from "uuid";
 import "../EventModal/EventModal.css";
 export const EventModal = () => {
-  const { createEvent, setCreateEvent } = useEvent();
+  const [createEvent,setCreateEvent]=useState(false)
 
   const [eventData, setEventData] = useState({
     eventName: "",

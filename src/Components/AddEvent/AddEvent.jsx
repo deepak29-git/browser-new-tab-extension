@@ -1,8 +1,8 @@
-import { useEvent } from "../../Context/event-context";
+import { useState } from "react";
 import "../AddEvent/AddEvent.css";
 import { EventModal } from "../EventModal/EventModal";
 export const AddEvent = () => {
-  const { event, setEvent } = useEvent();
+  const [event,setEvent]=useState(false)
   const addEventHandler = () => {
     if (event) {
       setEvent(false);

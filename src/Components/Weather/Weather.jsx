@@ -40,9 +40,18 @@ export const Weather = () => {
   };
 
   const error = (err) => {
+    if (err.message === "User denied Geolocation") {
+      setGeoLocation({
+        ...geoLocation,
+        latitude: 12.9716,
+        longitude: 77.5946,
+      });
+    }
     console.log(`ERROR(${err.code}): ${err.message}`);
   };
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success, error, options);
+  }, []);
 
   return (
     <>

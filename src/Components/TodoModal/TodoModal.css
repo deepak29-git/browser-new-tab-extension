@@ -70,6 +70,21 @@ input[type="checkbox"] {
 .update-btn{
   background-color: var(--primary-color);
   margin-top: 0.3rem;
-  padding: 0.4rem ;
+  padding: 8px;
+  margin-left: 10px;
 }
 
+.edit-input{
+  padding: 5px;
+  outline: none;
+  margin-left: 10px;
+}
+.cancel-btn{
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: var(--white-color);
+  padding: 0.4rem ;
+  margin-left: 10px;
+}

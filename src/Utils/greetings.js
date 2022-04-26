@@ -1,4 +1,3 @@
-import { getMinuteBelowTen } from "./getMinuteBelowTen";
 
 export const greetings = () => {
   const hours = new Date().getHours();

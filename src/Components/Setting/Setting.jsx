@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../Setting/Setting.css";
-export const Setting = () => {
+export const Setting = ({ userName, mainFocus }) => {
   const [setting, setSetting] = useState(false);
+
   const addsettingHandler = () => {
     if (setting) {
       setSetting(false);
@@ -10,8 +11,9 @@ export const Setting = () => {
     }
   };
   const yesHandler = () => {
-    localStorage.clear();
     setSetting(false);
+    userName("");
+    mainFocus("");
   };
 
   const noHandler = () => {

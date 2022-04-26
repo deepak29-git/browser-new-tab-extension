@@ -109,7 +109,7 @@ export const OnboardingPage = () => {
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}
-      {printUserName && <Setting />}
+      {printUserName && <Setting userName={setPrintUserName} mainFocus={setPrintMainFocus}/>}
     </>
   );
 };
