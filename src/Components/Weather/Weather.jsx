@@ -14,7 +14,7 @@ export const Weather = () => {
 
   useEffect(() => {
     getWeatherApi(setWeather, geoLocation?.latitude, geoLocation?.longitude);
-  }, [geoLocation.latitude, geoLocation.longitude]);
+  }, [geoLocation?.latitude, geoLocation?.longitude, setWeather]);
 
   const weatherHandler = () => {
     if (weatherModal) {
@@ -49,9 +49,8 @@ export const Weather = () => {
     }
     console.log(`ERROR(${err.code}): ${err.message}`);
   };
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  }, []);
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
 
   return (
     <>
