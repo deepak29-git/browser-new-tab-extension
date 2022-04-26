@@ -11,6 +11,8 @@ import { Setting } from "../../Components/Setting/Setting";
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
   const [mainFocusInput, setMainFocusInput] = useState("");
+  const [doneMainFocus,setDoneMainFocus]=useState(false)
+  const [editClick,setEditClick]=useState(false)
   const [printMainFocus, setPrintMainFocus] = useState(
     localStorage.getItem("mainFocus") ? localStorage.getItem("mainFocus") : ""
   );
@@ -28,6 +30,14 @@ export const OnboardingPage = () => {
     }
   };
 
+  const lineThroughHandler=()=>{
+    if(doneMainFocus){
+      setDoneMainFocus(false)
+    }else {
+      setDoneMainFocus(!doneMainFocus)
+    }
+  }
+
   const addMainFocusHandler = (e) => {
     if (e.key === "Enter") {
       setPrintMainFocus(mainFocusInput);
@@ -35,9 +45,10 @@ export const OnboardingPage = () => {
   };
 
   const editClickHandler = () => {
-    setPrintMainFocus("")
+    setPrintMainFocus("");
+    setEditClick(true)
+
   };
- 
 
   useEffect(() => {
     localStorage.setItem("userName", printUserName);
@@ -72,11 +83,28 @@ export const OnboardingPage = () => {
         </div>
       ) : (
         <div className="center-align">
-          <h1 className="title">{new Date().getHours()<10?"0"+new Date().getHours():new Date().getHours()}:{getMinuteBelowTen()}</h1>
+          <h1 className="title">
+            {new Date().getHours() < 10
+              ? "0" + new Date().getHours()
+              : new Date().getHours()}
+            :{getMinuteBelowTen()}
+          </h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.
           </p>
-          <p className="h2 main-focus-title mt-1">{printMainFocus}</p>
+
+          {printMainFocus&&<div className="main-focus-container">
+            <input onClick={()=>lineThroughHandler()} id="done-mainfocus" className="mainfocus-checkbox" type="checkbox" />
+            <label className={doneMainFocus? "done-mainfocus":"main-focus-title"}   htmlFor="done-mainfocus" >{printMainFocus}</label>
+           <span
+              onClick={() => editClickHandler()}
+              className="material-icons-outlined edit-icon-mainfocus"
+            >
+              edit
+            </span>
+          </div>}
+       {doneMainFocus && printMainFocus?<p className="done-msg">Good job</p>:""}
+
           {!printMainFocus && (
             <div>
               <p className="h3 main-focus-title center-text mt-1">
@@ -91,25 +119,17 @@ export const OnboardingPage = () => {
               />
             </div>
           )}
-          <div className="edit-delete-container">
-            <span
-              onClick={() => editClickHandler()}
-              className="edit-icon material-icons-outlined"
-            >
-              edit
-            </span>
-           
-          </div>
         </div>
-
       )}
-          <div className="quotes-container">
-            <p className="quotes">{quotes.content}</p>
-          </div>
+      <div className="quotes-container">
+        <p className="quotes">{quotes.content}</p>
+      </div>
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}
-      {printUserName && <Setting userName={setPrintUserName} mainFocus={setPrintMainFocus}/>}
+      {printUserName && (
+        <Setting userName={setPrintUserName} mainFocus={setPrintMainFocus} />
+      )}
     </>
   );
 };

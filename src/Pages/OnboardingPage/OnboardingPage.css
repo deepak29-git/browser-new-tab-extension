@@ -73,3 +73,25 @@
 .edit-delete-container {
   color: var(--white-color);
 }
+
+.main-focus-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.edit-icon-mainfocus{
+  color:var(--white-color);
+  cursor: pointer;
+}
+
+.done-mainfocus{
+  text-decoration: line-through;
+  color:var(--grey-color);
+}
+
+.done-msg{
+  color:var(--white-color);
+  margin-top: 1rem;
+}
