@@ -20,6 +20,17 @@ export const OnboardingPage = () => {
     localStorage.getItem("userName") ? localStorage.getItem("userName") : ""
   );
 
+
+
+  const timeFormat=()=>{
+    const hours=new Date().getHours()
+    if(hours>=12){
+      return `0${hours-12}:${getMinuteBelowTen()} PM`
+    }else{
+      return `0${hours}:${getMinuteBelowTen()} AM`
+    }
+  }
+ 
   const continueHandler = (e) => {
     if (e.key === "Enter") {
       setPrintUserName(userName);
@@ -83,9 +94,8 @@ export const OnboardingPage = () => {
         <div className="center-align">
           <h1 className="title">
             {new Date().getHours() < 10
-              ? "0" + new Date().getHours()
-              : new Date().getHours()}
-            :{getMinuteBelowTen()}
+              ? "0" + timeFormat()
+              : timeFormat()}
           </h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.
