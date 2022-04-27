@@ -101,7 +101,7 @@ export const OnboardingPage = () => {
               edit
             </span>
           </div>}
-       {doneMainFocus && printMainFocus?<p className="done-msg">Good job</p>:""}
+       {doneMainFocus && printMainFocus?<span className="done-msg">Good job</span>:""}
 
           {!printMainFocus && (
             <div>
@@ -119,9 +119,9 @@ export const OnboardingPage = () => {
           )}
         </div>
       )}
-      <div className="quotes-container">
+      {printUserName&&<div className="quotes-container">
         <p className="quotes">{quotes.content}</p>
-      </div>
+      </div>}
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}
