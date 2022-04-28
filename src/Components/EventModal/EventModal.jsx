@@ -87,7 +87,7 @@ export const EventModal = () => {
               >
                 add
               </span>
-              <span onClick={()=>setShowDelete(true)} className="material-icons-outlined">more_horiz</span>
+              <span onClick={()=>showDelete?setShowDelete(false):setShowDelete(!showDelete)} className="material-icons-outlined">more_horiz</span>
             </div>
           </div>
           {showDelete?

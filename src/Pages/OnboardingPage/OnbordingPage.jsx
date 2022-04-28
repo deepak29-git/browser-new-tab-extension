@@ -11,7 +11,9 @@ import { Setting } from "../../Components/Setting/Setting";
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
   const [mainFocusInput, setMainFocusInput] = useState("");
-  const [doneMainFocus,setDoneMainFocus]=useState(false)
+  const [doneMainFocus, setDoneMainFocus] = useState(
+    localStorage.getItem("isDoneMainFocus")==="true" ? true : false
+  );
   const [printMainFocus, setPrintMainFocus] = useState(
     localStorage.getItem("mainFocus") ? localStorage.getItem("mainFocus") : ""
   );
@@ -20,17 +22,6 @@ export const OnboardingPage = () => {
     localStorage.getItem("userName") ? localStorage.getItem("userName") : ""
   );
 
-
-
-  const timeFormat=()=>{
-    const hours=new Date().getHours()
-    if(hours>=12){
-      return `0${hours-12}:${getMinuteBelowTen()} PM`
-    }else{
-      return `0${hours}:${getMinuteBelowTen()} AM`
-    }
-  }
- 
   const continueHandler = (e) => {
     if (e.key === "Enter") {
       setPrintUserName(userName);
@@ -40,13 +31,15 @@ export const OnboardingPage = () => {
     }
   };
 
-  const lineThroughHandler=()=>{
-    if(doneMainFocus){
-      setDoneMainFocus(false)
-    }else {
-      setDoneMainFocus(!doneMainFocus)
+  const lineThroughHandler = () => {
+    if (doneMainFocus) {
+      setDoneMainFocus(false);
+      localStorage.setItem("isDoneMainFocus", false);
+    } else {
+      setDoneMainFocus(!doneMainFocus);
+      localStorage.setItem("isDoneMainFocus", !doneMainFocus);
     }
-  }
+  };
 
   const addMainFocusHandler = (e) => {
     if (e.key === "Enter") {
@@ -56,7 +49,6 @@ export const OnboardingPage = () => {
 
   const editClickHandler = () => {
     setPrintMainFocus("");
-
   };
 
   useEffect(() => {
@@ -93,25 +85,40 @@ export const OnboardingPage = () => {
       ) : (
         <div className="center-align">
           <h1 className="title">
-            {new Date().getHours() < 10
-              ? "0" + timeFormat()
-              : timeFormat()}
+            {new Date().getHours()}:{getMinuteBelowTen()}
           </h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.
           </p>
 
-          {printMainFocus&&<div className="main-focus-container">
-            <input onClick={()=>lineThroughHandler()} id="done-mainfocus" className="mainfocus-checkbox" type="checkbox" />
-            <label className={doneMainFocus? "done-mainfocus":"main-focus-title"}   htmlFor="done-mainfocus" >{printMainFocus}</label>
-           <span
-              onClick={() => editClickHandler()}
-              className="material-icons-outlined edit-icon-mainfocus"
-            >
-              edit
-            </span>
-          </div>}
-       {doneMainFocus && printMainFocus?<span className="done-msg">Good job</span>:""}
+          {printMainFocus && (
+            <div className="main-focus-container">
+              <input
+                onClick={() => lineThroughHandler()}
+                className="mainfocus-checkbox"
+                type="checkbox"
+                checked={doneMainFocus ? true : false}
+              />
+              <label
+                className={
+                  doneMainFocus ? "done-mainfocus" : "main-focus-title"
+                }
+              >
+                {printMainFocus}
+              </label>
+              <span
+                onClick={() => editClickHandler()}
+                className="material-icons-outlined edit-icon-mainfocus"
+              >
+                edit
+              </span>
+            </div>
+          )}
+          {doneMainFocus && printMainFocus ? (
+            <span className="done-msg">Good job</span>
+          ) : (
+            ""
+          )}
 
           {!printMainFocus && (
             <div>
@@ -129,9 +136,11 @@ export const OnboardingPage = () => {
           )}
         </div>
       )}
-      {printUserName&&<div className="quotes-container">
-        <p className="quotes">{quotes.content}</p>
-      </div>}
+      {printUserName && (
+        <div className="quotes-container">
+          <p className="quotes">{quotes.content}</p>
+        </div>
+      )}
       {printUserName && <Todo />}
       {printUserName && <Weather />}
       {printUserName && <AddEvent />}

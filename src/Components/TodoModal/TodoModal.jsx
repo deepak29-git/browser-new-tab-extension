@@ -4,18 +4,20 @@ import "./TodoModal.css";
 export const TodoModal = () => {
   const [todoInput, setTodoInput] = useState(false);
   const [input, setInput] = useState("");
-  const [todo, setTodo] = useState(
+  const [todos, setTodos] = useState(
     localStorage.getItem("todos")
       ? JSON.parse(localStorage.getItem("todos"))
       : []
   );
   const [selectEdit, setselectEdit] = useState(false);
   const [currentTodo, setCurrentTodo] = useState({});
+
   const strikeThroughHandler = (id) => {
-    const newTodo = todo.map((item) =>
+    const newTodo = todos.map((item) =>
       item.id === id ? { ...item, isDone: !item.isDone } : item
     );
-    setTodo(newTodo);
+
+    setTodos(newTodo);
   };
 
   const addTodoHandler = (e) => {
@@ -23,8 +25,8 @@ export const TodoModal = () => {
       if (!input) {
         return;
       }
-      setTodo([
-        ...todo,
+      setTodos([
+        ...todos,
         {
           id: uuid(),
           name: input,
@@ -36,11 +38,11 @@ export const TodoModal = () => {
   };
 
   useEffect(() => {
-    localStorage.setItem("todos", JSON.stringify(todo));
-  }, [todo]);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const deleteTodoHandler = (id) => {
-    setTodo(todo.filter((item) => item.id !== id));
+    setTodos(todos.filter((item) => item.id !== id));
   };
   const editClickHandler = (todo) => {
     setselectEdit(true);
@@ -52,32 +54,29 @@ export const TodoModal = () => {
   };
 
   const updateHandler = () => {
-    const updatedTodo = todo.map((todo) =>
+    const updatedTodo = todos.map((todo) =>
       todo.id === currentTodo.id ? currentTodo : todo
     );
     setselectEdit(false);
-    setTodo(updatedTodo);
+    setTodos(updatedTodo);
   };
   return (
     <>
       <div className="todomodal-box">
-        <div className={todo.length === 0 ? "add-todo-container" : undefined}>
+        <div className={todos.length === 0 ? "add-todo-container" : undefined}>
           <div className="mt-5">
-            {todo.length === 0 ? (
+            {todos.length === 0 ? (
               <p className="mb-half white-color">No todos yet</p>
             ) : (
-              todo.map((todo) => (
+              todos.map((todo) => (
                 <div className="todo-container" key={todo.id}>
                   <input
                     onClick={() => strikeThroughHandler(todo.id)}
                     className="todo-checkbox"
-                    id="done-todo"
                     type="checkbox"
                   />
 
                   <label
-                    htmlFor="done-todo"
-                    onClick={() => strikeThroughHandler(todo.id)}
                     className={`white-color ${
                       todo.isDone ? `done-todo` : undefined
                     }`}
@@ -101,21 +100,26 @@ export const TodoModal = () => {
               ))
             )}
 
-            {selectEdit&&<div>
-              <input
-                className="edit-input"
-                type="text"
-                value={currentTodo.name}
-                onChange={(e) => editChangeHandler(e)}
-                placeholder="Edit todo"
-              />
-              <button className="btn update-btn" onClick={updateHandler}>
-                Update
-              </button>
-              <button className="btn cancel-btn" onClick={()=>setselectEdit(false)}>
-                Cancel
-              </button>
-            </div>}
+            {selectEdit && (
+              <div>
+                <input
+                  className="edit-input"
+                  type="text"
+                  value={currentTodo.name}
+                  onChange={(e) => editChangeHandler(e)}
+                  placeholder="Edit todo"
+                />
+                <button className="btn update-btn" onClick={updateHandler}>
+                  Update
+                </button>
+                <button
+                  className="btn cancel-btn"
+                  onClick={() => setselectEdit(false)}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
 
             {!todoInput && (
               <button
