@@ -37,6 +37,9 @@ export const TodoModal = () => {
     }
   };
 
+
+ 
+
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -71,9 +74,10 @@ export const TodoModal = () => {
               todos.map((todo) => (
                 <div className="todo-container" key={todo.id}>
                   <input
-                    onClick={() => strikeThroughHandler(todo.id)}
+                    checked={todo.isDone}
                     className="todo-checkbox"
                     type="checkbox"
+                    onChange={()=>strikeThroughHandler(todo.id)}
                   />
 
                   <label
