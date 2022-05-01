@@ -11,6 +11,7 @@ import { Setting } from "../../Components/Setting/Setting";
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
   const [mainFocusInput, setMainFocusInput] = useState("");
+  const [clock,setClock]=useState();
   const [doneMainFocus, setDoneMainFocus] = useState(
     localStorage.getItem("isDoneMainFocus")==="true" ? true : false
   );
@@ -51,6 +52,13 @@ export const OnboardingPage = () => {
     setPrintMainFocus("");
   };
 
+  useEffect(()=>{
+    
+    setInterval(()=>{
+      setClock(new Date().getHours()+":"+getMinuteBelowTen())
+    },1000)
+  },[clock])
+
   useEffect(() => {
     localStorage.setItem("userName", printUserName);
   }, [printUserName]);
@@ -85,7 +93,7 @@ export const OnboardingPage = () => {
       ) : (
         <div className="center-align">
           <h1 className="title">
-            {new Date().getHours()}:{getMinuteBelowTen()}
+            {clock}
           </h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.

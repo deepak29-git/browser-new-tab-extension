@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import "../EventModal/EventModal.css";
 export const EventModal = () => {
-  const [createEvent,setCreateEvent]=useState(false)
-
+  const [createEvent, setCreateEvent] = useState(false);
+  const [interval, setInterval] = useState("");
   const [eventData, setEventData] = useState({
     eventName: "",
     eventDate: "",
@@ -15,7 +15,7 @@ export const EventModal = () => {
       : []
   );
   const [countDown, setCountDown] = useState();
-  const [showDelete,setShowDelete]=useState(false)
+  const [showDelete, setShowDelete] = useState(false);
   const addEventHandler = () => {
     setCreateEvent(true);
   };
@@ -51,6 +51,7 @@ export const EventModal = () => {
     const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
 
     if (timeLeft < 0) {
+      clearInterval(interval);
       return "Event is happening";
     } else {
       return `${days}d ${hours}h ${minutes}m`;
@@ -62,12 +63,12 @@ export const EventModal = () => {
     setPrintEvent(deleteEvent);
   };
 
-
-  setInterval(() => {
-    setCountDown(new Date());
-  }, 1000);
-
-  useEffect(() => {}, [countDown]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCountDown(new Date());
+      setInterval(interval);
+    }, 1000);
+  }, [countDown]);
 
   useEffect(() => {
     localStorage.setItem("countdown", JSON.stringify(printEvent));
@@ -87,17 +88,31 @@ export const EventModal = () => {
               >
                 add
               </span>
-              <span onClick={()=>showDelete?setShowDelete(false):setShowDelete(!showDelete)} className="material-icons-outlined">more_horiz</span>
+              <span
+                onClick={() =>
+                  showDelete ? setShowDelete(false) : setShowDelete(!showDelete)
+                }
+                className="material-icons-outlined"
+              >
+                more_horiz
+              </span>
             </div>
           </div>
-          {showDelete?
-          <div className="delete-btn-container">
-          <button onClick={()=>{
-            setPrintEvent([])
-            setShowDelete(false)
-            }} className="delete-all-btn btn">Delete All</button>
-          </div>
-          :""}
+          {showDelete ? (
+            <div className="delete-btn-container">
+              <button
+                onClick={() => {
+                  setPrintEvent([]);
+                  setShowDelete(false);
+                }}
+                className="delete-all-btn btn"
+              >
+                Delete All
+              </button>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="print-countdown-container">
             {printEvent.map(({ id, eventName, eventDate, eventTime }) => {
               let countDown = getCountDown(eventDate, eventTime);
