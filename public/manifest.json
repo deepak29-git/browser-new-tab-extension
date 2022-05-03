@@ -1,10 +1,9 @@
-
 {
-  "name":"Tab Tools",
-  "description":"add todo,main-focus,weather and events",
-  "version":"1.0.1",
-  "manifest_version": 2 ,
-  "author":"Deepak Goyal",
+  "name": "Tab Tools",
+  "description": "add todo,main-focus,weather and events",
+  "version": "1.0.1",
+  "manifest_version": 2,
+  "author": "Deepak Goyal",
   "browser_action": {
     "default_popup": "index.html",
     "default_title": "New Tab",
@@ -19,7 +18,7 @@
     "96": "logo96.png"
   },
 
-  "chrome_url_overrides":{
-    "newtab":"index.html"
+  "chrome_url_overrides": {
+    "newtab": "index.html"
   }
 }
