@@ -126,12 +126,15 @@ export const TodoModal = () => {
             )}
 
             {!todoInput && (
+              <div className="center">
+
               <button
                 onClick={() => setTodoInput(true)}
                 className="add-todo-btn btn"
-              >
+                >
                 Add Todo
               </button>
+                </div>
             )}
           </div>
           <div className="todo-input-container">
