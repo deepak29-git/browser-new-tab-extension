@@ -6,16 +6,7 @@
   "author": "Deepak Goyal",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "New Tab",
-    "default_icon": {
-      "48": "logo48.png",
-      "96": "logo96.png"
-    }
-  },
-
-  "icons": {
-    "48": "logo48.png",
-    "96": "logo96.png"
+    "default_title": "New Tab"
   },
 
   "chrome_url_overrides": {
