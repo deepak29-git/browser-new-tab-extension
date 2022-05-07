@@ -81,6 +81,7 @@ export const OnboardingPage = () => {
             className="name-input"
             onKeyDown={(e) => continueHandler(e)}
             type="text"
+            autoFocus
           />
           <button
             onClick={(e) => continueHandler(e)}
@@ -139,6 +140,7 @@ export const OnboardingPage = () => {
                 onKeyDown={addMainFocusHandler}
                 value={mainFocusInput}
                 type="text"
+                autoFocus
               />
             </div>
           )}

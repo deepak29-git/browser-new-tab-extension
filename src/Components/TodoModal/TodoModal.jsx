@@ -146,6 +146,7 @@ export const TodoModal = () => {
                 placeholder="New Todo"
                 type="text"
                 value={input}
+                autoFocus
               />
             )}
           </div>

@@ -157,6 +157,7 @@ export const EventModal = () => {
               onChange={(e) => onChangeHandler(e)}
               value={eventData.eventName}
               name="eventName"
+              autoFocus
             />
             <div>
               <label className="label" htmlFor="date">
