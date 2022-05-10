@@ -33,26 +33,26 @@ export const Weather = () => {
 
     const success = (pos) => {
       const crd = pos.coords;
-      setGeoLocation({
+      setGeoLocation((geoLocation) => ({
         ...geoLocation,
         latitude: crd.latitude,
         longitude: crd.longitude,
-      });
+      }));
     };
 
     const error = (err) => {
       if (err.message === "User denied Geolocation") {
-        setGeoLocation({
+        setGeoLocation((geoLocation) => ({
           ...geoLocation,
           latitude: 12.9716,
           longitude: 77.5946,
-        });
+        }));
       }
       console.log(`ERROR(${err.code}): ${err.message}`);
     };
     navigator.geolocation.getCurrentPosition(success, error, options);
-  }, [geoLocation]);
-  
+  }, []);
+
   return (
     <>
       <div className="align-top">
