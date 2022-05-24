@@ -3,7 +3,6 @@
 .todo-title {
   color: var(--white-color);
   margin-right: 1rem;
-  /* position: relative; */
   position: absolute;
   bottom: 30px;
   right: 30px;

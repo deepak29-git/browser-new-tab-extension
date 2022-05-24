@@ -72,19 +72,17 @@ export const OnboardingPage = () => {
 
   return (
     <>
-      <div className="link-container">
-        <button className="btn link-btn">
-          <a
+      <div  className="link-container">
+        <a
+          className="link-btn btn"
             target="_blank"
-            className="extension-link"
             rel="noreferrer"
             href="https://addons.mozilla.org/en-US/firefox/addon/tab-tools/"
           >
             Download Extension
-          </a>
           <span class="material-icons">download</span>
-        </button>
-      </div>
+          </a>
+          </div>
       {!printUserName ? (
         <div className="center-align">
           <h1 className="title">Hello,what's your name?</h1>

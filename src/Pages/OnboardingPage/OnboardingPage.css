@@ -99,20 +99,18 @@
 
 .link-btn{
   background-color: var(--primary-color);
-  margin-top: 1rem;
-  padding: 1rem;
-  margin-left: 1rem;
   font-weight: 600;
-  font-size: medium;
+  font-size: medium; 
+  color: var(--black-color);
+  position: absolute;
+  top: 20px;
+  padding: 1rem;
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-.extension-link{
-  color: var(--black-color);
-  
-}
+
 .link-container{
   display: flex;
   justify-content: center;
