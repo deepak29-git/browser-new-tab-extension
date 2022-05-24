@@ -96,3 +96,29 @@
   color:var(--white-color);
   margin-top: 1rem;
 }
+
+.link-btn{
+  background-color: var(--primary-color);
+  margin-top: 1rem;
+  padding: 1rem;
+  margin-left: 1rem;
+  font-weight: 600;
+  font-size: medium;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.extension-link{
+  color: var(--black-color);
+  
+}
+.link-container{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.link-btn:hover{
+  background-color: var(--primary-hover);
+}

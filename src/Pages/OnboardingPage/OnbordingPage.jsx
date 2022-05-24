@@ -7,13 +7,13 @@ import { Weather } from "../../Components/Weather/Weather";
 import { getQuoteApi } from "../../api-services/quotes-api";
 import { AddEvent } from "../../Components/AddEvent/AddEvent";
 import { Setting } from "../../Components/Setting/Setting";
-
+// import {Link} from 'react-router-dom'
 export const OnboardingPage = () => {
   const [userName, setUserName] = useState("");
   const [mainFocusInput, setMainFocusInput] = useState("");
-  const [clock,setClock]=useState();
+  const [clock, setClock] = useState();
   const [doneMainFocus, setDoneMainFocus] = useState(
-    localStorage.getItem("isDoneMainFocus")==="true" ? true : false
+    localStorage.getItem("isDoneMainFocus") === "true" ? true : false
   );
   const [printMainFocus, setPrintMainFocus] = useState(
     localStorage.getItem("mainFocus") ? localStorage.getItem("mainFocus") : ""
@@ -52,12 +52,11 @@ export const OnboardingPage = () => {
     setPrintMainFocus("");
   };
 
-  useEffect(()=>{
-    
-    setInterval(()=>{
-      setClock(new Date().getHours()+":"+getMinuteBelowTen())
-    },1000)
-  },[clock])
+  useEffect(() => {
+    setInterval(() => {
+      setClock(new Date().getHours() + ":" + getMinuteBelowTen());
+    }, 1000);
+  }, [clock]);
 
   useEffect(() => {
     localStorage.setItem("userName", printUserName);
@@ -73,6 +72,19 @@ export const OnboardingPage = () => {
 
   return (
     <>
+      <div className="link-container">
+        <button className="btn link-btn">
+          <a
+            target="_blank"
+            className="extension-link"
+            rel="noreferrer"
+            href="https://addons.mozilla.org/en-US/firefox/addon/tab-tools/"
+          >
+            Download Extension
+          </a>
+          <span class="material-icons">download</span>
+        </button>
+      </div>
       {!printUserName ? (
         <div className="center-align">
           <h1 className="title">Hello,what's your name?</h1>
@@ -93,9 +105,7 @@ export const OnboardingPage = () => {
         </div>
       ) : (
         <div className="center-align">
-          <h1 className="title">
-            {clock}
-          </h1>
+          <h1 className="title">{clock}</h1>
           <p className="h1 greeting-text">
             {greetings()}, {printUserName}.
           </p>
